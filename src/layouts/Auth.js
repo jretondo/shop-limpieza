@@ -50,13 +50,12 @@ const Auth = () => {
         <strong>{msgAlertStrong}</strong> {msgAlert}
       </Alert>
       <div className="main-content">
-        <AuthNavbar />
         <div className="header bg-gradient-secondary py-5">
           <Container>
             <div className="header-body text-center mb-7">
               <Row className="justify-content-center">
                 <Col lg="5" md="6">
-                  <img src={Brand2} alt="baitcast" style={{ width: "80%" }} />
+                  <img src={Brand2} alt="baitcast" style={{ width: "65%" }} />
                 </Col>
               </Row>
             </div>

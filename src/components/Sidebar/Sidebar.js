@@ -21,7 +21,7 @@ import {
   Col
 } from "reactstrap";
 import Img1 from 'assets/img/theme/default-avatar.png';
-import Brand2 from 'assets/img/brand/logo.png';
+import Brand2 from 'assets/img/brand/logo2.png';
 import axios from "axios";
 import UrlNodeServer from "../../api/NodeServer";
 
@@ -160,7 +160,7 @@ class Sidebar extends React.Component {
             <button
               className="navbar-toggler"
               type="button"
-              style={{ background: "#0081c9" }}
+              style={{ background: "#00b9b9" }}
               onClick={this.toggleCollapse}
             >
               <span className="navbar-toggler-icon" />
@@ -168,7 +168,7 @@ class Sidebar extends React.Component {
             {/* Brand */}
             {logo ? (
               <NavbarBrand className="pt-0" {...navbarBrandProps}>
-                <img alt="..." src={Brand2} style={{ width: "100px", height: "70px" }} />
+                <img alt="..." src={Brand2} style={{ width: "200px", height: "70px" }} />
               </NavbarBrand>
             ) : null}
             {/* User */}
