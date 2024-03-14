@@ -359,6 +359,32 @@ const ProdList = ({
         }).finally(() => { setEsperar(false) })
     }
 
+    const donwloadPrices = async () => {
+        let data = {
+            query: ""
+        }
+        if (busquedaBool) {
+            data = {
+                query: palabraBuscada
+            }
+        }
+        setEsperar(true)
+        await axios.get(UrlNodeServer.productsDir.sub.productPrices, {
+            responseType: 'arraybuffer',
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('user-token'),
+                Accept: 'application/pdf',
+            },
+            params: data
+        }).then(res => {
+            let headerLine = res.headers['content-disposition'];
+            const largo = parseInt(headerLine.length)
+            let filename = headerLine.substring(21, largo);
+            var blob = new Blob([res.data], { type: "application/pdf" });
+            FileSaver.saveAs(blob, filename);
+        }).catch(() => { }).finally(() => setEsperar(false))
+    }
+
     useEffect(() => {
         if (!advancedSearch) {
             setProductoBuscado("")
@@ -658,7 +684,7 @@ const ProdList = ({
                                                     </Row>
                                                 </Form>
                                                 : <Row>
-                                                    <Col md="3" style={{ marginTop: "20px", textAlign: "center" }}>
+                                                    <Col style={{ marginTop: "20px", textAlign: "center" }}>
                                                         <button
                                                             className="btn btn-danger"
                                                             style={nvaOffer ? { display: "none", width: "160px", margin: "auto" } : { display: "block", width: "160px", margin: "auto" }}
@@ -670,7 +696,7 @@ const ProdList = ({
                                                             Imprimir PDF
                                                         </button>
                                                     </Col>
-                                                    <Col md="3" style={{ marginTop: "20px", textAlign: "center" }}>
+                                                    <Col style={{ marginTop: "20px", textAlign: "center" }}>
                                                         <button
                                                             className="btn btn-primary"
                                                             style={nvaOffer ? { display: "none", width: "160px", margin: "auto" } : { display: "block", width: "160px", margin: "auto" }}
@@ -683,7 +709,7 @@ const ProdList = ({
                                                             Nuevo Producto
                                                         </button>
                                                     </Col>
-                                                    <Col md="3" style={{ marginTop: "20px", textAlign: "center" }}>
+                                                    <Col style={{ marginTop: "20px", textAlign: "center" }}>
                                                         <button
                                                             className="btn btn-primary"
                                                             style={nvaOffer ? { display: "none", width: "160px", margin: "auto" } : { display: "block", width: "160px", margin: "auto" }}
@@ -694,7 +720,7 @@ const ProdList = ({
                                                             Variar Costos
                                                         </button>
                                                     </Col>
-                                                    <Col md="3" style={{ marginTop: "20px", textAlign: "center" }}>
+                                                    <Col style={{ marginTop: "20px", textAlign: "center" }}>
                                                         <button
                                                             className="btn btn-warning"
                                                             style={nvaOffer ? { display: "none", width: "160px", margin: "auto" } : { display: "block", width: "160px", margin: "auto" }}
@@ -703,6 +729,17 @@ const ProdList = ({
                                                                 setUpdateList(true);
                                                             }}>
                                                             Editar Lista
+                                                        </button>
+                                                    </Col>
+                                                    <Col style={{ marginTop: "20px", textAlign: "center" }}>
+                                                        <button
+                                                            className="btn btn-danger"
+                                                            style={nvaOffer ? { display: "none", width: "160px", margin: "auto" } : { display: "block", width: "160px", margin: "auto" }}
+                                                            onClick={e => {
+                                                                e.preventDefault();
+                                                                donwloadPrices();
+                                                            }}>
+                                                            Descargar Precios
                                                         </button>
                                                     </Col>
                                                 </Row>}

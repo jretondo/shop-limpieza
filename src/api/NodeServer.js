@@ -15,8 +15,7 @@ if (process.env.NODE_ENV === "development") {
     host = "https://api-prod.nekoadmin.com.ar/shop-limpieza/api"
     publicFiles = "https://api-prod.nekoadmin.com.ar/shop-limpieza/static"
 }
-host = "https://api-prod.nekoadmin.com.ar/shop-limpieza/api"
-publicFiles = "https://api-prod.nekoadmin.com.ar/shop-limpieza/static"
+
 const prodImages = publicFiles + "/images/products/"
 
 const publicFolder = {
@@ -87,7 +86,8 @@ const productsDir = {
         changePorc: products + "/changePorc",
         codBarra: products + "/codBarra",
         cost: products + "/cost",
-        pdf: products + "/pdf"
+        pdf: products + "/pdf",
+        productPrices: products + "/productPrices",
     }
 }
 
