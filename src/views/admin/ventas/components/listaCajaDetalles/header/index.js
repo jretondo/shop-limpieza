@@ -21,11 +21,11 @@ const HeaderListaCaja = ({
 }) => {
   const hoy1 = moment(new Date()).format('YYYY-MM-DD');
   const hoy2 = moment(new Date()).format('YYYY-MM-DD');
-  const [ptosVta, setPtoVta] = useState({ id: 0 });
+  const [ptosVta, setPtoVta] = useState({ id: '' });
   const [ptoVtaList, setPtoVtaList] = useState(
     <option>No hay puntos de venta relacionados</option>,
   );
-  const [user, setUser] = useState({ id: 0 });
+  const [user, setUser] = useState({ id: '' });
   const [usersList, setUsersList] = useState(
     <option>No hay usuarios listados</option>,
   );

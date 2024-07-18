@@ -8,7 +8,7 @@ const ListaCajaModuleDetails = () => {
   const [pagina, setPagina] = useState(1);
   const [loading, setLoading] = useState(false);
   const [actualizar, setActualizar] = useState(false);
-  const [group, setGroup] = useState('');
+  const [group, setGroup] = useState('category');
 
   return (
     <Card style={{ marginTop: '30px' }}>
